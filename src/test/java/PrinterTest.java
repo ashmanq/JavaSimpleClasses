@@ -33,6 +33,7 @@ public class PrinterTest {
     public void canReplaceToner(){
         printer.print(10, 10);
         printer.replaceToner();
+        assertEquals(0, printer.getPaper());
         assertEquals(100, printer.getToner());
     }
 
@@ -47,4 +48,21 @@ public class PrinterTest {
         printer.print(1, 10);
         assertEquals(90, printer.getToner());
     }
+
+    @Test
+    public void testCantPrintWhenPaperLessThanPrint(){
+        printer.print(1, 50);
+        printer.print(1, 51);
+        assertEquals(50, printer.getPaper());
+    }
+
+    @Test
+    public void testCantPrintWhenTonerLessThanPrint(){
+        printer.print(1, 100);
+        printer.addPaper(10);
+        printer.print(1, 1);
+        assertEquals(10, printer.getPaper());
+        assertEquals(0, printer.getToner());
+    }
+
 }

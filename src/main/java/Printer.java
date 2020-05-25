@@ -27,7 +27,10 @@ public class Printer {
     }
 
     public void print(int noOfPages, int noOfCopies){
-        this.paper -=(noOfPages * noOfCopies);
-        this.toner -=(noOfPages * noOfCopies);
+        int totalPagesToPrint = (noOfPages * noOfCopies);
+        if(totalPagesToPrint <= this.paper && totalPagesToPrint <= this.toner){
+            this.paper -=(noOfPages * noOfCopies);
+            this.toner -=(noOfPages * noOfCopies);
+        }
     }
 }
